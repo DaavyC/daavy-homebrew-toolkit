@@ -1,0 +1,591 @@
+@layer daavy-homebrew-toolkit {
+  :is(.inlinebuilder, .inlinebuilder-editor-btn),
+  :is(.inlinebuilder, .inlinebuilder-editor-btn) * {
+    --inlinebuilder-bg: #121017 !important;
+    --inlinebuilder-panel: #1b1720 !important;
+    --inlinebuilder-input: #211c26 !important;
+    --inlinebuilder-border: #81717b !important;
+    --inlinebuilder-border-soft: #39313c !important;
+    --inlinebuilder-text: #f5eee5 !important;
+    --inlinebuilder-muted: #b8aeb5 !important;
+    --inlinebuilder-accent: #d9b16c !important;
+    --inlinebuilder-accent-bg: #3b3021 !important;
+    --inlinebuilder-apply: #236c35 !important;
+    --inlinebuilder-apply-hover: #2a7b40 !important;
+    --inlinebuilder-shadow: 0 12px 32px rgba(0, 0, 0, 0.35) !important;
+    --color-text-primary: var(--inlinebuilder-text) !important;
+    --color-text-secondary: var(--inlinebuilder-muted) !important;
+    --input-text-color: var(--inlinebuilder-text) !important;
+    --input-background-color: var(--inlinebuilder-input) !important;
+    --input-border-color: var(--inlinebuilder-border) !important;
+    --button-size: 30px !important;
+    color-scheme: dark !important;
+    color: var(--inlinebuilder-text) !important;
+  }
+
+  .daavy-homebrew-toolkit-light :is(.inlinebuilder, .inlinebuilder-editor-btn),
+  .daavy-homebrew-toolkit-light :is(.inlinebuilder, .inlinebuilder-editor-btn) * {
+    --inlinebuilder-bg: #f8f6f2 !important;
+    --inlinebuilder-panel: #fffdfa !important;
+    --inlinebuilder-input: #fffdfa !important;
+    --inlinebuilder-border: #9b8e82 !important;
+    --inlinebuilder-border-soft: #e0d9d0 !important;
+    --inlinebuilder-text: #302a25 !important;
+    --inlinebuilder-muted: #69615a !important;
+    --inlinebuilder-accent: #87602b !important;
+    --inlinebuilder-accent-bg: #eee4d2 !important;
+    --inlinebuilder-shadow: 0 12px 32px rgba(48, 42, 37, 0.16) !important;
+    color-scheme: light !important;
+  }
+
+  :is(.inlinebuilder, .inlinebuilder-editor-btn),
+  :is(.inlinebuilder, .inlinebuilder-editor-btn) * {
+    font-family: "Signika", ui-sans-serif, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: 1.25 !important;
+    text-transform: none !important;
+    text-shadow: none !important;
+    letter-spacing: normal !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    filter: none !important;
+  }
+
+  .inlinebuilder :is(i, .icon),
+  .inlinebuilder-editor-btn > i {
+    font-family: "Font Awesome 7 Pro" !important;
+    font-weight: 900 !important;
+  }
+
+  .inlinebuilder.application,
+  .inlinebuilder.window-app {
+    background: var(--inlinebuilder-bg) !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--inlinebuilder-shadow) !important;
+    overflow: hidden !important;
+    max-width: calc(100vw - 16px) !important;
+  }
+
+  .inlinebuilder .window-header {
+    min-height: 44px !important;
+    padding: 0 12px 0 16px !important;
+    background: var(--inlinebuilder-bg) !important;
+    border-bottom: 1px solid var(--inlinebuilder-border-soft) !important;
+    color: var(--inlinebuilder-text) !important;
+  }
+
+  .inlinebuilder .window-title {
+    color: var(--inlinebuilder-text) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  .inlinebuilder .window-header .header-control {
+    color: var(--inlinebuilder-muted) !important;
+  }
+
+  .inlinebuilder .window-header .header-control:hover {
+    color: var(--inlinebuilder-text) !important;
+  }
+
+  .inlinebuilder .window-header [data-action="toggleControls"],
+  .inlinebuilder .window-resize-handle,
+  .inlinebuilder .resize-handle {
+    display: none !important;
+  }
+
+  .inlinebuilder .window-content {
+    padding: 0 !important;
+    background: var(--inlinebuilder-bg) !important;
+    color: var(--inlinebuilder-text) !important;
+    overflow: auto !important;
+    min-height: 0 !important;
+  }
+
+  .inlinebuilder-content {
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    padding: 8px !important;
+    min-width: 0 !important;
+  }
+
+  .inlinebuilder-content > * {
+    flex: 0 0 auto !important;
+  }
+
+  .inlinebuilder fieldset.template-section {
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid var(--inlinebuilder-border-soft) !important;
+    border-radius: 7px !important;
+    background: var(--inlinebuilder-panel) !important;
+    overflow: hidden !important;
+  }
+
+  .inlinebuilder-row,
+  .inlinebuilder-content .form-group {
+    display: grid !important;
+    grid-template-columns: minmax(108px, 0.32fr) minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 7px 8px !important;
+    border-bottom: 1px solid var(--inlinebuilder-border-soft) !important;
+  }
+
+  .inlinebuilder-row:last-child,
+  .inlinebuilder-content .form-group:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .inlinebuilder-label,
+  .inlinebuilder-content .form-group > label {
+    min-width: 0 !important;
+  }
+
+  .inlinebuilder-label label,
+  .inlinebuilder-content .form-group > label {
+    display: block !important;
+    margin: 0 !important;
+    color: var(--inlinebuilder-text) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
+
+  .inlinebuilder-label > span {
+    display: block !important;
+    margin-top: 2px !important;
+    color: var(--inlinebuilder-muted) !important;
+    font-size: 10px !important;
+  }
+
+  .inlinebuilder-control {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .inlinebuilder :is(input[type="text"], input[type="number"], select, textarea) {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 30px !important;
+    padding: 0 8px !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 5px !important;
+    background: var(--inlinebuilder-input) !important;
+    color: var(--inlinebuilder-text) !important;
+    box-shadow: none !important;
+    caret-color: var(--inlinebuilder-accent) !important;
+  }
+
+  .inlinebuilder :is(input, textarea)::placeholder {
+    color: var(--inlinebuilder-muted) !important;
+    opacity: 1 !important;
+  }
+
+  .inlinebuilder select option {
+    background: var(--inlinebuilder-input) !important;
+    color: var(--inlinebuilder-text) !important;
+  }
+
+  .inlinebuilder textarea {
+    height: auto !important;
+    min-height: 180px !important;
+    padding: 10px !important;
+    resize: vertical !important;
+    line-height: 1.45 !important;
+  }
+
+  .inlinebuilder :is(.icon-btn-group, .input-with-suggest, .input-with-controls, .dmg-level-row) {
+    display: flex !important;
+    gap: 5px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .inlinebuilder button,
+  .inlinebuilder-checkbox {
+    appearance: none !important;
+    box-sizing: border-box !important;
+    color: var(--inlinebuilder-text) !important;
+    cursor: pointer !important;
+  }
+
+  .inlinebuilder :is(button, input, select, textarea),
+  .inlinebuilder-editor-btn {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .inlinebuilder :is(.icon-btn, .suggest-btn, .distance-btn, .dmg-level-btn, .inlinebuilder-toggle, .insert-all-btn, .add-condition-comfort, .inlinebuilder-checkbox) {
+    font: inherit !important;
+    line-height: 1 !important;
+  }
+
+  .inlinebuilder :is(.icon-btn, .suggest-btn, .distance-btn, .dmg-level-btn, .inlinebuilder-checkbox) {
+    min-width: 30px !important;
+    height: 30px !important;
+    padding: 0 6px !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 5px !important;
+    background: var(--inlinebuilder-input) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    box-shadow: none !important;
+  }
+
+  .inlinebuilder button > i,
+  .inlinebuilder-checkbox > i,
+  .inlinebuilder-editor-btn > i {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    width: 1.25em !important;
+    height: 1em !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    pointer-events: none !important;
+  }
+
+  .inlinebuilder .icon-btn {
+    flex: 1 1 0 !important;
+  }
+
+  .inlinebuilder .segmented {
+    gap: 0 !important;
+  }
+
+  .inlinebuilder .segmented > .icon-btn {
+    margin-left: 0 !important;
+    border-left-width: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .inlinebuilder .segmented > .icon-btn:first-child {
+    border-left-width: 1px !important;
+    border-radius: 5px 0 0 5px !important;
+  }
+
+  .inlinebuilder .segmented > .icon-btn:last-child {
+    border-radius: 0 5px 5px 0 !important;
+  }
+
+  .inlinebuilder .segmented > .icon-btn:only-child {
+    border-radius: 5px !important;
+  }
+
+  .inlinebuilder .text-segments .icon-btn {
+    min-width: max-content !important;
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+  }
+
+  .inlinebuilder :is(.input-with-suggest, .input-with-controls) input {
+    flex: 1 1 auto !important;
+  }
+
+  .inlinebuilder :is(.suggest-btn, .distance-btn, .dmg-level-btn) {
+    flex: 0 0 30px !important;
+    padding: 0 !important;
+  }
+
+  .inlinebuilder .actions-footer {
+    margin: 0 !important;
+    padding: 2px 0 0 !important;
+  }
+
+  .inlinebuilder .insert-all-btn {
+    width: 100% !important;
+    min-height: 36px !important;
+    padding: 0 12px !important;
+    border: 1px solid var(--inlinebuilder-apply) !important;
+    border-radius: 6px !important;
+    background: var(--inlinebuilder-apply) !important;
+    color: #ffffff !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    box-shadow: none !important;
+  }
+
+  .inlinebuilder .insert-all-btn:hover {
+    background: var(--inlinebuilder-apply-hover) !important;
+    border-color: var(--inlinebuilder-apply-hover) !important;
+  }
+
+  .inlinebuilder-toggles {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .inlinebuilder-toggle {
+    min-width: 0 !important;
+    min-height: 48px !important;
+    padding: 5px 4px !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 6px !important;
+    background: var(--inlinebuilder-panel) !important;
+    display: grid !important;
+    place-items: center !important;
+    gap: 3px !important;
+    box-shadow: none !important;
+  }
+
+  .inlinebuilder-toggle i {
+    font-size: 16px !important;
+  }
+
+  .inlinebuilder-toggle span {
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .inlinebuilder :is(.icon-btn, .suggest-btn, .distance-btn, .dmg-level-btn, .inlinebuilder-toggle, .inlinebuilder-checkbox, .cond-btn-card, .add-condition-comfort):is(:hover, .active),
+  .inlinebuilder-check-control input:checked + .inlinebuilder-checkbox {
+    border-color: var(--inlinebuilder-accent) !important;
+    background: var(--inlinebuilder-accent-bg) !important;
+    color: var(--inlinebuilder-text) !important;
+    box-shadow: none !important;
+  }
+
+  .inlinebuilder .segmented > .icon-btn:has(+ .icon-btn:is(:hover, .active)) {
+    border-right-color: var(--inlinebuilder-accent) !important;
+  }
+
+  .inlinebuilder-check-control input[type="checkbox"] {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    opacity: 0 !important;
+  }
+
+  .inlinebuilder :is(button, input, select, textarea):focus-visible,
+  .inlinebuilder-check-control input:focus-visible + .inlinebuilder-checkbox,
+  .inlinebuilder .cond-btn-card:focus-within {
+    outline: 2px solid var(--inlinebuilder-accent) !important;
+    outline-offset: -2px !important;
+  }
+
+  .inlinebuilder :is(button, input, select, textarea):disabled,
+  .inlinebuilder-check-control input:disabled + .inlinebuilder-checkbox {
+    opacity: 0.55 !important;
+    cursor: not-allowed !important;
+  }
+
+  .inlinebuilder ::selection {
+    color: var(--inlinebuilder-text) !important;
+    background: var(--inlinebuilder-accent-bg) !important;
+  }
+
+  .inlinebuilder .window-content {
+    scrollbar-color: var(--inlinebuilder-border) var(--inlinebuilder-bg) !important;
+    scrollbar-width: thin !important;
+  }
+
+  .inlinebuilder-dmg-suggest .inlinebuilder-row {
+    grid-template-columns: 84px minmax(0, 1fr) !important;
+  }
+
+  .inlinebuilder-dmg-suggest .text-segments .icon-btn {
+    padding: 0 5px !important;
+    font-size: 10px !important;
+  }
+
+  .inlinebuilder .dmg-level-value {
+    flex: 1 1 auto !important;
+    min-width: 48px !important;
+    height: 30px !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 5px !important;
+    background: var(--inlinebuilder-input) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  .inlinebuilder .condition-picker-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(68px, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .inlinebuilder .cond-btn-card {
+    min-height: 64px !important;
+    height: 64px !important;
+    padding: 5px 4px !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 6px !important;
+    background: var(--inlinebuilder-panel) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+  }
+
+  .inlinebuilder .cond-icon-wrap {
+    position: relative !important;
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 auto !important;
+  }
+
+  .inlinebuilder .cond-icon {
+    width: 30px !important;
+    height: 30px !important;
+    border: 0 !important;
+    object-fit: contain !important;
+  }
+
+  .inlinebuilder .cond-icon-fa {
+    display: grid !important;
+    place-items: center !important;
+    color: var(--inlinebuilder-text) !important;
+    font-size: 24px !important;
+  }
+
+  .inlinebuilder .cond-name {
+    color: var(--inlinebuilder-text) !important;
+    font-size: 9px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-transform: uppercase !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .inlinebuilder .cond-value {
+    position: absolute !important;
+    top: -3px !important;
+    right: -7px !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    padding: 0 3px !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 4px !important;
+    background: var(--inlinebuilder-input) !important;
+    display: grid !important;
+    place-items: center !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  .inlinebuilder .cond-btn-card.active .cond-value {
+    border-color: var(--inlinebuilder-accent) !important;
+  }
+
+  .inlinebuilder .comfort-edit-container {
+    position: relative !important;
+    min-width: 0 !important;
+  }
+
+  .inlinebuilder .comfort-edit-container textarea {
+    padding-bottom: 52px !important;
+  }
+
+  .inlinebuilder .add-condition-comfort {
+    position: absolute !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 5px !important;
+    background: var(--inlinebuilder-panel) !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  .inlinebuilder-editor-host {
+    position: relative !important;
+  }
+
+  .inlinebuilder-editor-host :is(.ProseMirror, [contenteditable="true"], .editor-content) {
+    padding-bottom: max(42px, var(--inlinebuilder-editor-existing-padding-bottom, 0px)) !important;
+  }
+
+  .editor-menu .inlinebuilder-editor-btn {
+    display: none !important;
+  }
+
+  .inlinebuilder-editor-btn {
+    position: absolute !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    z-index: 20 !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 1px solid var(--inlinebuilder-border) !important;
+    border-radius: 5px !important;
+    background: var(--inlinebuilder-panel) !important;
+    color: var(--inlinebuilder-text) !important;
+    display: grid !important;
+    place-items: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .inlinebuilder-editor-btn:hover {
+    border-color: var(--inlinebuilder-accent) !important;
+    background: var(--inlinebuilder-accent-bg) !important;
+  }
+
+  .inlinebuilder-editor-btn:focus-visible {
+    outline: 2px solid var(--inlinebuilder-accent) !important;
+    outline-offset: 2px !important;
+  }
+
+  .inlinebuilder-editor-btn i {
+    pointer-events: none !important;
+  }
+
+  @media (max-width: 520px) {
+    .inlinebuilder-toggles {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .inlinebuilder-row,
+    .inlinebuilder-content .form-group,
+    .inlinebuilder-dmg-suggest .inlinebuilder-row {
+      grid-template-columns: 1fr !important;
+      gap: 6px !important;
+    }
+
+    .inlinebuilder .text-segments {
+      flex-wrap: wrap !important;
+    }
+  }
+}

@@ -1,0 +1,289 @@
+{{#if mainTemplate}}
+<div class="inlinebuilder-content inlinebuilder-main">
+  <div class="inlinebuilder-toggles" aria-label="{{labels.sectionsAria}}">
+    <button type="button" class="inlinebuilder-toggle active" data-section="template" data-tooltip="{{labels.areaTemplate}}">
+      <i class="fas fa-bullseye"></i>
+      <span>{{labels.areaTemplate}}</span>
+    </button>
+    <button type="button" class="inlinebuilder-toggle" data-section="damage" data-tooltip="{{labels.damage}}">
+      <i class="fas fa-fire"></i>
+      <span>{{labels.damage}}</span>
+    </button>
+    <button type="button" class="inlinebuilder-toggle" data-section="check" data-tooltip="{{labels.savingThrow}}">
+      <i class="fas fa-shield-alt"></i>
+      <span>{{labels.savingThrow}}</span>
+    </button>
+    <button type="button" class="inlinebuilder-toggle" data-section="automation" data-tooltip="{{labels.automations}}">
+      <i class="fas fa-list-check"></i>
+      <span>{{labels.automations}}</span>
+    </button>
+  </div>
+
+  <fieldset class="template-section" data-section="template">
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.templateType}}</label>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented">
+        {{> inlinebuilderIconSegment options=templateTypes buttonClass="template-type-btn"}}
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label for="template-distance">{{labels.distance}}</label>
+      </div>
+      <div class="inlinebuilder-control input-with-controls">
+        <input type="number" id="template-distance" name="templateDistance" min="0" step="5" placeholder="ft" value="0">
+        <button type="button" id="distance-decrease" class="distance-btn" data-tooltip="{{labels.decreaseDistance}}">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button type="button" id="distance-increase" class="distance-btn" data-tooltip="{{labels.increaseDistance}}">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button type="button" id="distance-reset" class="distance-btn" data-tooltip="{{labels.resetDistance}}">
+          <i class="fas fa-undo"></i>
+        </button>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="template-section" data-section="damage" style="display:none;">
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label for="damage-formula">{{labels.formula}}</label>
+      </div>
+      <div class="inlinebuilder-control input-with-suggest">
+        <input type="text" id="damage-formula" name="damageFormula" placeholder="{{defaultDamage}}">
+        <button type="button" id="suggest-damage-btn" class="suggest-btn" data-tooltip="{{labels.suggestBasedOnLevel}}">
+          <i class="fas fa-dragon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label for="damage-type">{{labels.damageType}}</label>
+      </div>
+      <div class="inlinebuilder-control">
+        {{> inlinebuilderDamageTypeSelect}}
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.traits}}</label>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented">
+        {{#each traits}}
+        <button type="button" class="icon-btn trait-btn" data-value="{{this.value}}" data-tooltip="{{this.tooltip}}">
+          <i class="fas {{this.icon}}"></i>
+        </button>
+        {{/each}}
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="template-section" data-section="check" style="display:none;">
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.save}}</label>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented">
+        {{> inlinebuilderIconSegment options=saveTypes buttonClass="save-type-btn"}}
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label for="dc-value">{{labels.dc}}</label>
+      </div>
+      <div class="inlinebuilder-control input-with-suggest">
+        <input type="number" id="dc-value" name="dcValue" min="1" max="60" placeholder="{{defaultDC}}">
+        <button type="button" id="suggest-dc-btn" class="suggest-btn" data-tooltip="{{labels.suggestBasedOnLevel}}">
+          <i class="fas fa-dragon"></i>
+        </button>
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label for="basic-save">{{labels.basic}}</label>
+      </div>
+      <div class="inlinebuilder-control inlinebuilder-check-control">
+        <input type="checkbox" id="basic-save" name="basicSave" checked>
+        <label for="basic-save" class="inlinebuilder-checkbox inlinebuilder-basic-toggle" data-tooltip="{{labels.basicSave}}">
+          <i class="fas fa-shield-alt"></i>
+        </label>
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.showAs}}</label>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented">
+        {{> inlinebuilderIconSegment options=showDCOptions buttonClass="show-dc-btn" activeValue="all"}}
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="template-section" data-section="automation" style="display:none;">
+    {{#each automationFields}}
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{label}}</label>
+      </div>
+      <div class="inlinebuilder-control input-with-suggest">
+        <input type="text" id="{{inputId}}" name="{{name}}">
+        <button type="button" class="add-condition suggest-btn" data-target="#{{inputId}}" title="{{../labels.addCondition}}">
+          <i class="fas fa-plus"></i>
+        </button>
+        <button type="button" class="comfort-edit suggest-btn" data-target="#{{inputId}}" title="{{../labels.textEditor}}">
+          <i class="fas fa-edit"></i>
+        </button>
+      </div>
+    </div>
+    {{/each}}
+  </fieldset>
+
+  <div class="actions-footer">
+    <button type="button" class="insert-all-btn" data-action="insertAll">
+      <i class="fas fa-check"></i>
+      <span>{{labels.apply}}</span>
+    </button>
+  </div>
+</div>
+{{/if}}
+
+{{#if damageDialogTemplate}}
+<div class="inlinebuilder-content">
+  <fieldset class="template-section">
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.damage}}</label>
+        <span>{{labels.formulaOnly}}</span>
+      </div>
+      <div class="inlinebuilder-control">
+        <input type="text" name="damage" placeholder="1d6">
+      </div>
+    </div>
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.type}}</label>
+        <span>{{labels.damageType}}</span>
+      </div>
+      <div class="inlinebuilder-control">
+        {{> inlinebuilderDamageTypeSelect}}
+      </div>
+    </div>
+  </fieldset>
+  <div class="actions-footer">
+    <button type="button" class="insert-all-btn" data-action="add">
+      <i class="fas fa-plus"></i>
+      <span>{{labels.add}}</span>
+    </button>
+  </div>
+</div>
+{{/if}}
+
+{{#if conditionPickerTemplate}}
+<div class="inlinebuilder-content">
+  <div class="condition-picker-grid">
+    {{#each conditions}}
+    <button type="button" class="cond-btn-card {{actionClass}}{{#if isActive}} active{{/if}}" data-cond="{{slug}}" title="{{actionTitle}}">
+      <span class="cond-icon-wrap">
+        {{#if iconClass}}
+        <i class="cond-icon cond-icon-fa {{iconClass}}"></i>
+        {{else}}
+        <img class="cond-icon" src="{{iconPath}}" alt="{{label}}">
+        {{/if}}
+        {{#if isValued}}
+        <span class="cond-value">{{value}}</span>
+        {{/if}}
+      </span>
+      <span class="cond-name">{{label}}</span>
+    </button>
+    {{/each}}
+  </div>
+</div>
+{{/if}}
+
+{{#if comfortEditTemplate}}
+<div class="inlinebuilder-content">
+  <div class="comfort-edit-container">
+    <textarea name="content" rows="10">{{content}}</textarea>
+    <button type="button" class="add-condition-comfort" data-action="addCondition" data-tooltip="{{labels.addCondition}}">
+      <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <div class="actions-footer">
+    <button type="button" class="insert-all-btn" data-action="save">
+      <i class="fas fa-save"></i>
+      <span>{{labels.save}}</span>
+    </button>
+  </div>
+</div>
+{{/if}}
+
+{{#if dcSuggestionTemplate}}
+<div class="inlinebuilder-content inlinebuilder-dmg-suggest">
+  <fieldset class="template-section">
+    {{> inlinebuilderLevelControl}}
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.intensity}}</label>
+        <span>{{labels.dcCategory}}</span>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented text-segments">
+        {{#each intensities}}
+        <button type="button" class="icon-btn dc-btn" data-action="confirmDC" data-intensity="{{value}}">{{label}}</button>
+        {{/each}}
+      </div>
+    </div>
+  </fieldset>
+</div>
+{{/if}}
+
+{{#if damageSuggestionTemplate}}
+<div class="inlinebuilder-content inlinebuilder-dmg-suggest">
+  {{#if showStep1}}
+  <fieldset class="template-section">
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.type}}</label>
+        <span>{{labels.damageProfile}}</span>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented text-segments">
+        <button type="button" class="icon-btn" data-action="selectType" data-type="area">
+          <i class="fas fa-burst"></i>
+          <span>{{labels.area}}</span>
+        </button>
+        <button type="button" class="icon-btn" data-action="selectType" data-type="strike">
+          <i class="fas fa-hand-fist"></i>
+          <span>{{labels.strike}}</span>
+        </button>
+      </div>
+    </div>
+  </fieldset>
+  {{/if}}
+
+  {{#if showStep2}}
+  <fieldset class="template-section">
+    {{> inlinebuilderLevelControl}}
+    <div class="inlinebuilder-row">
+      <div class="inlinebuilder-label">
+        <label>{{labels.intensity}}</label>
+        <span>{{labels.damageCategory}}</span>
+      </div>
+      <div class="inlinebuilder-control icon-btn-group segmented text-segments">
+        {{#if isArea}}
+        <button type="button" class="icon-btn" data-action="selectSub" data-sub="unlimited">{{labels.unlimited}}</button>
+        <button type="button" class="icon-btn" data-action="selectSub" data-sub="limited">{{labels.limited}}</button>
+        {{/if}}
+        {{#if isStrike}}
+        <button type="button" class="icon-btn" data-action="selectSub" data-sub="extreme">{{labels.extreme}}</button>
+        <button type="button" class="icon-btn" data-action="selectSub" data-sub="high">{{labels.high}}</button>
+        <button type="button" class="icon-btn" data-action="selectSub" data-sub="moderate">{{labels.moderate}}</button>
+        <button type="button" class="icon-btn" data-action="selectSub" data-sub="low">{{labels.low}}</button>
+        {{/if}}
+      </div>
+    </div>
+  </fieldset>
+  {{/if}}
+</div>
+{{/if}}

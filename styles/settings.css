@@ -1,0 +1,51 @@
+.daavy-homebrew-toolkit-settings-actions {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0 2px;
+}
+
+.daavy-homebrew-toolkit-settings-actions button {
+  flex: 1;
+}
+
+button.daavy-homebrew-toolkit-donate-action {
+  color: #ffffff;
+  background: #ff5a16;
+  border-color: #ff8a5c;
+}
+
+button.daavy-homebrew-toolkit-donate-action:hover {
+  background: #e84e0c;
+}
+
+button.daavy-homebrew-toolkit-discord-action {
+  color: #ffffff;
+  background: #5662f6;
+  border-color: #7e87ff;
+}
+
+button.daavy-homebrew-toolkit-discord-action:hover {
+  background: #4652dc;
+}
+
+button.daavy-homebrew-toolkit-feedback-action {
+  color: #ffffff;
+  background: #238b82;
+  border-color: #45bdb1;
+}
+
+button.daavy-homebrew-toolkit-feedback-action:hover {
+  background: #2ca69b;
+}
+
+.daavy-homebrew-toolkit-settings-actions button:focus,
+.daavy-homebrew-toolkit-settings-actions button:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.daavy-homebrew-toolkit-settings-actions button:focus-visible {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+  box-shadow: none;
+}

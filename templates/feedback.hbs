@@ -1,0 +1,28 @@
+<div class="form-group stacked">
+  <span id="daavy-homebrew-toolkit-feedback-category-label">{{localize "DAAVY_HOMEBREW_TOOLKIT.Feedback.Category"}}</span>
+  <div class="form-fields daavy-homebrew-toolkit-feedback-categories" role="radiogroup" aria-labelledby="daavy-homebrew-toolkit-feedback-category-label">
+    {{#each categories}}
+    <label class="daavy-homebrew-toolkit-feedback-category">
+      <input type="radio" name="category" value="{{value}}" required>
+      <span>{{label}}</span>
+    </label>
+    {{/each}}
+  </div>
+</div>
+
+<div class="form-group stacked">
+  <label for="daavy-homebrew-toolkit-feedback-message">{{localize "DAAVY_HOMEBREW_TOOLKIT.Feedback.Message"}}</label>
+  <textarea id="daavy-homebrew-toolkit-feedback-message" name="message" rows="8" maxlength="{{maxLength}}" required></textarea>
+  <p class="hint">{{localize "DAAVY_HOMEBREW_TOOLKIT.Feedback.MessageHint"}}</p>
+</div>
+
+<footer class="form-footer">
+  <button type="button" class="daavy-homebrew-toolkit-feedback-cancel" data-action="close">
+    <i class="fa-solid fa-xmark"></i>
+    {{localize "DAAVY_HOMEBREW_TOOLKIT.Feedback.Cancel"}}
+  </button>
+  <button type="submit" class="daavy-homebrew-toolkit-feedback-send">
+    <i class="fa-solid fa-paper-plane"></i>
+    {{localize "DAAVY_HOMEBREW_TOOLKIT.Feedback.Send"}}
+  </button>
+</footer>

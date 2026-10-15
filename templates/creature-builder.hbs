@@ -1,0 +1,476 @@
+{{#*inline "hbt-tier-control"}}
+<div class="hbt-segmented">
+  {{#each tiers}}
+  <button type="button" class="hbt-tier{{#if active}} active{{/if}}" data-action="setTier" data-path="{{../path}}" data-tier="{{value}}">{{label}}</button>
+  {{/each}}
+</div>
+<input type="{{inputType}}" class="hbt-value" data-override="{{path}}" data-table="{{table}}" value="{{value}}"{{#if label}} aria-label="{{label}}"{{/if}}>
+{{/inline}}
+{{#*inline "hbt-stat-row"}}
+<div class="hbt-row{{#if custom}} custom{{/if}}">
+  <div class="hbt-label"><label>{{label}}</label></div>
+  <div class="hbt-control">{{> hbt-tier-control}}</div>
+</div>
+{{/inline}}
+{{#*inline "hbt-tag-picker"}}
+<div class="hbt-tags">
+  {{#if options.length}}
+  <span class="hbt-tag-add" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.AddTag"}}">
+    <i class="fa-solid fa-plus"></i>
+    <select data-tag-select="{{kind}}" data-path="{{path}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.AddTag"}}">
+      {{#each options}}<option value="{{value}}">{{label}}</option>{{/each}}
+    </select>
+  </span>
+  {{/if}}
+  {{#each chips}}
+  <button type="button" class="hbt-chip" data-action="removeTag" data-path="{{../path}}" data-value="{{value}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.RemoveTag"}}">
+    {{label}}
+  </button>
+  {{/each}}
+</div>
+{{/inline}}
+{{#*inline "hbt-figure"}}<span class="hbt-figure{{#if custom}} edited{{/if}}">{{text}}</span>{{/inline}}
+<div class="hbt-content">
+<div class="hbt-split">
+<div class="hbt-form">
+  <div class="hbt-toggles">
+    {{#each sections}}
+    <button type="button" class="hbt-toggle{{#if active}} active{{/if}}" data-action="setSection" data-section="{{id}}" data-tooltip="{{label}}">
+      <i class="fa-solid {{icon}}"></i>
+      <span>{{label}}</span>
+    </button>
+    {{/each}}
+  </div>
+
+  <div class="hbt-body">
+    {{#if (eq section "identity")}}
+    <fieldset class="hbt-section">
+      <div class="hbt-row">
+        <div class="hbt-label"><label for="hbt-name">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Name"}}</label></div>
+        <div class="hbt-control">
+          <input type="text" id="hbt-name" data-bind="name" value="{{identity.name}}" placeholder="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.NamePlaceholder"}}">
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Level"}}</label></div>
+        <div class="hbt-control">
+          <button type="button" class="hbt-icon-button" data-action="adjustLevel" data-delta="-1" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.LevelDecrease"}}"><i class="fa-solid fa-minus"></i></button>
+          <span class="hbt-level">{{identity.level}}</span>
+          <button type="button" class="hbt-icon-button" data-action="adjustLevel" data-delta="1" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.LevelIncrease"}}"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label for="hbt-role">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Role"}}</label></div>
+        <div class="hbt-control">
+          <select id="hbt-role" data-bind="role">
+            <option value="">{{identity.roles.none.label}}</option>
+            {{#each identity.roles.groups}}
+            <optgroup label="{{label}}">
+              {{#each options}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+            </optgroup>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      {{#if identity.roleHint}}<p class="hbt-hint">{{identity.roleHint}}</p>{{/if}}
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Size"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            {{#each identity.sizes}}<button type="button" class="hbt-tier{{#if selected}} active{{/if}}" data-action="setValue" data-path="size" data-value="{{value}}">{{label}}</button>{{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Rarity"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            {{#each identity.rarities}}<button type="button" class="hbt-tier{{#if selected}} active{{/if}}" data-action="setValue" data-path="rarity" data-value="{{value}}">{{label}}</button>{{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Traits"}}</label></div>
+        <div class="hbt-control">{{> hbt-tag-picker identity.traits}}</div>
+      </div>
+      {{#each identity.traitNotes}}<p class="hbt-hint"><b>{{label}}</b> {{text}}</p>{{/each}}
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Languages"}}</label></div>
+        <div class="hbt-control">{{> hbt-tag-picker identity.languages}}</div>
+      </div>
+    </fieldset>
+    <fieldset class="hbt-section">
+      <legend>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Speeds.Title"}}</legend>
+      <div class="hbt-row">
+        <div class="hbt-label"><label for="hbt-speed">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Speed"}}</label></div>
+        <div class="hbt-control">
+          <input type="number" id="hbt-speed" class="hbt-value" min="0" step="5" data-type="number" data-bind="speed" value="{{identity.speed}}">
+        </div>
+      </div>
+      {{#each identity.otherSpeeds}}
+      <div class="hbt-row">
+        <div class="hbt-label hbt-label-stack">
+          <select data-bind="{{path}}.type" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Speeds.Title"}}">
+            {{#each types}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+        </div>
+        <div class="hbt-control">
+          <input type="number" class="hbt-value" min="0" step="5" data-type="number" data-bind="{{path}}.value" value="{{value}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Speed"}}">
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="otherSpeeds" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      {{/each}}
+      {{#if identity.canAddSpeed}}
+      <div class="hbt-actions">
+        <button type="button" class="hbt-add" data-action="addOtherSpeed"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.AddSpeed"}}</button>
+      </div>
+      {{/if}}
+    </fieldset>
+    {{/if}}
+
+    {{#if (eq section "attributes")}}
+    <fieldset class="hbt-section">
+      {{#each attributes.attributes}}{{> hbt-stat-row}}{{/each}}
+      {{> hbt-stat-row attributes.perception}}
+    </fieldset>
+    <fieldset class="hbt-section">
+      <legend>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Senses.Title"}}</legend>
+      {{#each attributes.senses}}
+      <div class="hbt-row">
+        <div class="hbt-label hbt-label-stack">
+          <select data-bind="{{path}}.type" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Senses.Title"}}">
+            {{#each types}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+        </div>
+        <div class="hbt-control">
+          <label class="hbt-inline-label">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Senses.Range"}}</label>
+          <input type="number" class="hbt-value" min="0" step="5" data-type="number" data-bind="{{path}}.range" value="{{range}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Senses.Range"}}">
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="senses" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      {{/each}}
+      {{#if attributes.canAddSense}}
+      <div class="hbt-actions">
+        <button type="button" class="hbt-add" data-action="addSense"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Senses.Add"}}</button>
+      </div>
+      {{/if}}
+    </fieldset>
+    <fieldset class="hbt-section">
+      <legend>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Skills.Title"}}</legend>
+      {{#each attributes.skills}}
+      <div class="hbt-row{{#if row.custom}} custom{{/if}}">
+        <div class="hbt-label hbt-label-stack">
+          <select data-bind="{{path}}.skill" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Skills.Title"}}">
+            {{#each options}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          {{#if isLore}}
+          <input type="text" data-bind="{{path}}.lore" value="{{lore}}" placeholder="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Skills.LorePlaceholder"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Skills.LorePlaceholder"}}">
+          {{/if}}
+        </div>
+        <div class="hbt-control">
+          {{> hbt-tier-control row label=(localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Skills.Title")}}
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="skills" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      {{/each}}
+      <div class="hbt-actions">
+        <button type="button" class="hbt-add" data-action="addSkill"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Skills.Add"}}</button>
+      </div>
+    </fieldset>
+    {{/if}}
+
+    {{#if (eq section "defenses")}}
+    <fieldset class="hbt-section">
+      {{> hbt-stat-row defenses.armorClass}}
+      {{#each defenses.saves}}{{> hbt-stat-row}}{{/each}}
+      {{> hbt-stat-row defenses.hitPoints}}
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Immunities"}}</label></div>
+        <div class="hbt-control">{{> hbt-tag-picker defenses.immunities}}</div>
+      </div>
+    </fieldset>
+    <fieldset class="hbt-section">
+      <legend>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Resistances.Title"}}</legend>
+      {{#each defenses.resistances}}
+      <div class="hbt-row hbt-row-end{{#if row.custom}} custom{{/if}}">
+        <div class="hbt-label hbt-label-stack">
+          <span class="hbt-kind">{{kindLabel}}{{#if exceptions}} <small>({{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Except"}} {{exceptions}})</small>{{/if}}</span>
+          <select data-bind="{{path}}.type" aria-label="{{kindLabel}}">
+            {{#each types}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+        </div>
+        <div class="hbt-control">
+          {{> hbt-tier-control row label=kindLabel}}
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="resistances" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      {{/each}}
+      {{#if (or defenses.canAdd.resistance defenses.canAdd.weakness)}}
+      <div class="hbt-actions">
+        {{#if defenses.canAdd.resistance}}<button type="button" class="hbt-add" data-action="addResistance" data-kind="resistance"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Resistances.AddResistance"}}</button>{{/if}}
+        {{#if defenses.canAdd.weakness}}<button type="button" class="hbt-add" data-action="addResistance" data-kind="weakness"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Resistances.AddWeakness"}}</button>{{/if}}
+      </div>
+      {{/if}}
+    </fieldset>
+    {{/if}}
+
+    {{#if (eq section "strikes")}}
+    {{#each strikes.list}}
+    <fieldset class="hbt-section">
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Name"}}</label></div>
+        <div class="hbt-control">
+          <input type="text" data-bind="{{path}}.name" value="{{name}}" placeholder="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.NamePlaceholder"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Name"}}">
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="strikes" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Kind"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            <button type="button" class="hbt-tier{{#unless ranged}} active{{/unless}}" data-action="setRanged" data-path="{{path}}" data-value="false">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Melee"}}</button>
+            <button type="button" class="hbt-tier{{#if ranged}} active{{/if}}" data-action="setRanged" data-path="{{path}}" data-value="true">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Ranged"}}</button>
+          </div>
+          {{#if ranged}}
+          <label class="hbt-inline-label hbt-strike-reach-label">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Increment"}}</label>
+          <input type="number" class="hbt-value" min="0" step="5" data-type="number" data-bind="{{path}}.increment" value="{{increment}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Increment"}}">
+          {{else}}
+          <label class="hbt-inline-label hbt-strike-reach-label">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Reach"}}</label>
+          <input type="number" class="hbt-value" min="0" step="5" data-type="number" data-bind="{{path}}.reach" value="{{reach}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Reach"}}">
+          {{/if}}
+        </div>
+      </div>
+      <div class="hbt-row{{#if attack.custom}} custom{{/if}}">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Attack"}}</label></div>
+        <div class="hbt-control">{{> hbt-tier-control attack label=(localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Attack")}}</div>
+      </div>
+      <div class="hbt-row{{#if damage.custom}} custom{{/if}}">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Damage"}}</label></div>
+        <div class="hbt-control">{{> hbt-tier-control damage label=(localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Damage")}}</div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.DamageType"}}</label></div>
+        <div class="hbt-control">
+          <select data-bind="{{path}}.damageType" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.DamageType"}}">
+            {{#each damageTypes}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+        </div>
+      </div>
+      {{#each extraDamage}}
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.ExtraDamage"}}</label></div>
+        <div class="hbt-control">
+          <input type="text" data-bind="{{path}}.formula" value="{{formula}}" placeholder="1d6" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.ExtraDamage"}}">
+          <select data-bind="{{path}}.damageType" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.DamageType"}}">
+            {{#each types}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+          </select>
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="{{../path}}.extraDamage" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      {{/each}}
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Traits"}}</label></div>
+        <div class="hbt-control">{{> hbt-tag-picker traits}}</div>
+      </div>
+      <div class="hbt-actions">
+        <button type="button" class="hbt-add" data-action="addExtraDamage" data-path="{{path}}"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.AddExtraDamage"}}</button>
+      </div>
+    </fieldset>
+    {{/each}}
+    <div class="hbt-actions">
+      <button type="button" class="hbt-add" data-action="addStrike"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Strikes.Add"}}</button>
+    </div>
+    {{/if}}
+
+    {{#if (eq section "abilities")}}
+    <fieldset class="hbt-section">
+      <legend>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Native"}}</legend>
+      <div class="hbt-row">
+        <div class="hbt-label"><label for="hbt-native-ability">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Glossary"}}</label></div>
+        <div class="hbt-control">
+          <select id="hbt-native-ability" data-native-ability>
+            <option value="">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.AddNative"}}</option>
+            {{#each abilities.nativeGroups}}
+            <optgroup label="{{label}}">
+              {{#each options}}<option value="{{value}}">{{label}}</option>{{/each}}
+            </optgroup>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+      {{#each abilities.list}}{{#if native}}
+      <div class="hbt-row hbt-ability-row">
+        <div class="hbt-label hbt-label-stack">
+          <span class="hbt-ability-name">{{name}} {{#if glyph}}<span class="action-glyph">{{glyph}}</span>{{/if}}</span>
+          <small class="hbt-kind">{{costLabel}} · {{categoryLabel}}</small>
+        </div>
+        <div class="hbt-control">
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="abilities" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      {{/if}}{{/each}}
+    </fieldset>
+    {{#each abilities.list}}{{#unless native}}
+    <fieldset class="hbt-section">
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Name"}}</label></div>
+        <div class="hbt-control">
+          <input type="text" data-bind="{{path}}.name" value="{{name}}" placeholder="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.NamePlaceholder"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Name"}}">
+          <button type="button" class="hbt-icon-button" data-action="removeEntry" data-list="abilities" data-id="{{id}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Cost"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            {{#each costs}}<button type="button" class="hbt-tier{{#if selected}} active{{/if}}" data-action="setValue" data-path="{{../path}}.cost" data-value="{{value}}" data-tooltip="{{label}}">{{#if glyph}}<span class="action-glyph">{{glyph}}</span>{{else}}{{label}}{{/if}}</button>{{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Category"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            {{#each categories}}<button type="button" class="hbt-tier{{#if selected}} active{{/if}}" data-action="setValue" data-path="{{../path}}.category" data-value="{{value}}">{{label}}</button>{{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Fields.Traits"}}</label></div>
+        <div class="hbt-control">{{> hbt-tag-picker traits}}</div>
+      </div>
+      <div class="hbt-row hbt-row-block">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Description"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-editor" contenteditable="true" role="textbox" aria-multiline="true" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.Description"}}" data-editor="{{path}}.description" data-placeholder="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.DescriptionPlaceholder"}}">{{{description}}}</div>
+        </div>
+      </div>
+      <div class="hbt-actions">
+        <button type="button" class="hbt-add" data-action="openInlineBuilder" data-keep-focus data-path="{{path}}"><i class="fa-solid fa-wand-sparkles"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.InlineBuilder"}}</button>
+      </div>
+    </fieldset>
+    {{/unless}}{{/each}}
+    <div class="hbt-actions">
+      <button type="button" class="hbt-add" data-action="addCustomAbility"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Abilities.AddCustom"}}</button>
+    </div>
+    {{/if}}
+
+    {{#if (eq section "spells")}}
+    {{#if spellcasting}}
+    <fieldset class="hbt-section">
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.Tradition"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            {{#each spellcasting.traditions}}<button type="button" class="hbt-tier{{#if selected}} active{{/if}}" data-action="setTradition" data-value="{{value}}">{{label}}</button>{{/each}}
+          </div>
+        </div>
+      </div>
+      <div class="hbt-row">
+        <div class="hbt-label"><label>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.Type"}}</label></div>
+        <div class="hbt-control">
+          <div class="hbt-segmented">
+            {{#each spellcasting.types}}<button type="button" class="hbt-tier{{#if selected}} active{{/if}}" data-action="setValue" data-path="spellcasting.type" data-value="{{value}}">{{label}}</button>{{/each}}
+          </div>
+        </div>
+      </div>
+      {{> hbt-stat-row spellcasting.difficultyClass}}
+      {{> hbt-stat-row spellcasting.attack}}
+    </fieldset>
+    <fieldset class="hbt-section">
+      <legend>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.Slots"}}</legend>
+      {{#each spellcasting.slots}}
+      <div class="hbt-row hbt-slot-row">
+        <div class="hbt-label"><label>{{label}}</label></div>
+        <div class="hbt-slots">
+          {{#each slots}}
+          <div class="hbt-slot" data-slot-drop data-rank="{{../rank}}" data-index="{{index}}">
+            <button type="button" class="hbt-slot-pick{{#if name}} filled{{/if}}" data-action="browseSpells" data-rank="{{../rank}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.Browse"}}" aria-label="{{../label}}">{{#if name}}{{name}}{{else}}{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.EmptySlot"}}{{/if}}</button>
+            {{#if name}}<button type="button" class="hbt-slot-clear" data-action="clearSlot" data-rank="{{../rank}}" data-index="{{index}}" data-tooltip="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Remove"}}"><i class="fa-solid fa-xmark"></i></button>{{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      {{else}}
+      <p class="hbt-hint">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.NoSlots"}}</p>
+      {{/each}}
+    </fieldset>
+    <div class="hbt-actions">
+      <button type="button" class="hbt-add" data-action="disableSpellcasting"><i class="fa-solid fa-trash"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.Remove"}}</button>
+    </div>
+    {{else}}
+    <div class="hbt-actions">
+      <button type="button" class="hbt-add" data-action="enableSpellcasting"><i class="fa-solid fa-plus"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Spells.Add"}}</button>
+    </div>
+    {{/if}}
+    {{/if}}
+  </div>
+
+  {{#if warnings.length}}
+  <section class="hbt-warnings" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Balance.Title"}}">
+    <header><i class="fa-solid fa-triangle-exclamation"></i> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Balance.Title"}} ({{warnings.length}})</header>
+    <ul>
+      {{#each warnings}}
+      <li>
+        <p>{{message}}</p>
+        <div class="hbt-fixes">
+          {{#each fixes}}
+          <button type="button" class="hbt-add" data-action="applyFix" data-warning="{{../id}}" data-fix="{{index}}"><i class="fa-solid fa-wand-magic-sparkles"></i> {{label}}</button>
+          {{/each}}
+        </div>
+      </li>
+      {{/each}}
+    </ul>
+  </section>
+  {{/if}}
+
+  <div class="hbt-footer">
+    <button type="button" class="hbt-create" data-action="create" data-keep-focus>
+      <i class="fa-solid fa-check"></i>
+      <span>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Create"}}</span>
+    </button>
+  </div>
+</div>
+
+<aside class="hbt-preview" aria-label="{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Title"}}">
+  <div class="hbt-preview-head">{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Title"}}</div>
+  <div class="hbt-sheet">
+    <header class="hbt-sheet-title">
+      <h2{{#unless preview.hasName}} class="empty"{{/unless}}>{{preview.title}}</h2>
+      <span>{{preview.levelLabel}}</span>
+    </header>
+    <div class="hbt-sheet-tags">
+      {{#each preview.tags}}<span class="hbt-sheet-tag{{#if rarity}} rarity-{{rarity}}{{/if}}">{{label}}</span>{{/each}}
+    </div>
+    <p><b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Perception"}}</b> {{> hbt-figure preview.perception}}{{#if preview.senses}}; {{preview.senses}}{{/if}}</p>
+    {{#if preview.languages}}<p><b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Languages"}}</b> {{preview.languages}}</p>{{/if}}
+    {{#if preview.skills.length}}
+    <p><b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Skills"}}</b> {{#each preview.skills}}{{label}} {{> hbt-figure figure}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+    {{/if}}
+    <p>{{#each preview.attributes}}<b>{{label}}</b> {{> hbt-figure figure}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+    <hr>
+    <p><b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.ArmorClass"}}</b> {{> hbt-figure preview.armorClass}}; {{#each preview.saves}}<b>{{label}}</b> {{> hbt-figure figure}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+    <p><b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.HitPoints"}}</b> {{> hbt-figure preview.hitPoints}}{{#if preview.immunities}}; <b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Immunities"}}</b> {{preview.immunities}}{{/if}}{{#if preview.weaknesses.length}}; <b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Weaknesses"}}</b> {{#each preview.weaknesses}}{{label}} {{> hbt-figure figure}}{{#if exceptions}} ({{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Except"}} {{exceptions}}){{/if}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}}{{#if preview.resistances.length}}; <b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Resistances"}}</b> {{#each preview.resistances}}{{label}} {{> hbt-figure figure}}{{#if exceptions}} ({{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Except"}} {{exceptions}}){{/if}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}}</p>
+    <p><b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Speed"}}</b> {{preview.speeds}}</p>
+    {{#if preview.strikes.length}}
+    <hr>
+    {{#each preview.strikes}}
+    <p><span class="hbt-sheet-kind">{{kind}}</span> {{name}} {{> hbt-figure bonus}}{{#if traits}} ({{traits}}){{/if}}, <b>{{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Damage"}}</b> {{> hbt-figure damage}} {{damageType}}{{#each extraDamage}} {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Plus"}} {{this}}{{/each}}</p>
+    {{/each}}
+    {{/if}}
+    {{#if preview.abilities.length}}
+    <hr>
+    {{#each preview.abilities}}
+    <p><b>{{name}}</b>{{#if glyph}} <span class="action-glyph">{{glyph}}</span>{{/if}}{{#if traits}} ({{traits}}){{/if}}</p>
+    {{#if description}}<div class="hbt-sheet-text">{{{description}}}</div>{{/if}}
+    {{/each}}
+    {{/if}}
+    {{#if preview.spellcasting}}
+    <hr>
+    <p><b>{{preview.spellcasting.name}}</b> {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.DC"}} {{> hbt-figure preview.spellcasting.difficultyClass}}, {{localize "DAAVY_HOMEBREW_TOOLKIT.CreatureBuilder.Preview.Attack"}} {{> hbt-figure preview.spellcasting.attack}}</p>
+    {{#each preview.spellcasting.slots}}<p><b>{{label}}</b> {{text}}</p>{{/each}}
+    {{/if}}
+  </div>
+</aside>
+</div>
+</div>

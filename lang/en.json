@@ -1,0 +1,462 @@
+{
+  "DAAVY_HOMEBREW_TOOLKIT": {
+    "Settings": {
+      "Theme": {
+        "Name": "Theme",
+        "Hint": "Choose the appearance of the toolkit windows.",
+        "Default": "Default",
+        "Light": "Light"
+      }
+    },
+    "CreatureBuilder": {
+      "Title": "Creature Builder",
+      "OpenButton": "Creature Builder",
+      "Create": "Create creature",
+      "Remove": "Remove",
+      "RemoveTag": "Remove",
+      "AddTag": "Add",
+      "Sections": {
+        "identity": "Identity",
+        "attributes": "Attributes",
+        "defenses": "Defenses",
+        "strikes": "Strikes",
+        "abilities": "Abilities",
+        "spells": "Spells"
+      },
+      "Abilities": {
+        "Native": "Bestiary Ability Glossary",
+        "Glossary": "Glossary",
+        "AddNative": "Add a glossary ability…",
+        "AddCustom": "Add Custom Ability",
+        "Name": "Name",
+        "NamePlaceholder": "Ability",
+        "Cost": "Type",
+        "Category": "Category",
+        "Description": "Description",
+        "DescriptionPlaceholder": "Describe the ability, or use the Inline Builder",
+        "InlineBuilder": "Inline Builder",
+        "Groups": {
+          "actions": "Actions",
+          "reaction": "Reactions",
+          "free": "Free actions",
+          "passive": "Passives"
+        },
+        "Costs": {
+          "1": "One action",
+          "2": "Two actions",
+          "3": "Three actions",
+          "reaction": "Reaction",
+          "free": "Free action",
+          "passive": "Passive"
+        },
+        "Categories": {
+          "offensive": "Offensive",
+          "defensive": "Defensive",
+          "interaction": "Interaction"
+        }
+      },
+      "Tiers": {
+        "extreme": "Extreme",
+        "high": "High",
+        "moderate": "Moderate",
+        "low": "Low",
+        "terrible": "Terrible",
+        "maximum": "Maximum",
+        "minimum": "Minimum"
+      },
+      "Roles": {
+        "None": "No role",
+        "brute": "Brute",
+        "magicalStriker": "Magical striker",
+        "skillParagon": "Skill paragon",
+        "skirmisher": "Skirmisher",
+        "sniper": "Sniper",
+        "soldier": "Soldier",
+        "spellcaster": "Spellcaster",
+        "Groups": {
+          "base": "Base",
+          "class": "Class"
+        },
+        "alchemist": "Alchemist",
+        "barbarian": "Barbarian",
+        "bard": "Bard",
+        "champion": "Champion",
+        "clericCloistered": "Cleric (Cloistered Cleric)",
+        "clericWarpriest": "Cleric (Warpriest)",
+        "druid": "Druid",
+        "fighter": "Fighter",
+        "investigator": "Investigator",
+        "monk": "Monk",
+        "oracle": "Oracle",
+        "ranger": "Ranger",
+        "rogue": "Rogue",
+        "sorcerer": "Sorcerer",
+        "swashbuckler": "Swashbuckler",
+        "witch": "Witch",
+        "wizard": "Wizard"
+      },
+      "Fields": {
+        "Name": "Name",
+        "NamePlaceholder": "Creature name",
+        "Level": "Level",
+        "LevelDecrease": "Decrease level",
+        "LevelIncrease": "Increase level",
+        "Role": "Role",
+        "Size": "Size",
+        "Rarity": "Rarity",
+        "Traits": "Traits",
+        "Speed": "Speed (ft)",
+        "AddSpeed": "Add movement Speed",
+        "Languages": "Languages",
+        "Immunities": "Immunities"
+      },
+      "Stats": {
+        "Perception": "Perception",
+        "ArmorClass": "Armor Class",
+        "HitPoints": "Hit Points",
+        "SpellDC": "Spell DC",
+        "SpellAttack": "Spell attack"
+      },
+      "Skills": {
+        "Title": "Skills",
+        "Add": "Add skill",
+        "Lore": "Lore",
+        "LorePlaceholder": "Lore topic"
+      },
+      "Resistances": {
+        "Title": "Resistances and weaknesses",
+        "AddResistance": "Add resistance",
+        "AddWeakness": "Add weakness",
+        "resistance": "Resistance",
+        "weakness": "Weakness"
+      },
+      "Strikes": {
+        "Add": "Add Strike",
+        "Name": "Name",
+        "NamePlaceholder": "Strike",
+        "Kind": "Kind",
+        "Melee": "Melee",
+        "Ranged": "Ranged",
+        "Reach": "Reach (ft)",
+        "Increment": "Range increment (ft)",
+        "Attack": "Attack bonus",
+        "Damage": "Damage",
+        "DamageType": "Damage type",
+        "ExtraDamage": "Extra damage",
+        "AddExtraDamage": "Add extra damage"
+      },
+      "Spells": {
+        "Add": "Add spellcasting",
+        "Remove": "Remove spellcasting",
+        "Tradition": "Tradition",
+        "Type": "Type",
+        "Slots": "Spell slots",
+        "Cantrips": "Cantrips",
+        "Rank": "Rank {rank}",
+        "EmptySlot": "Empty slot",
+        "Browse": "Browse spells for this slot",
+        "NoSlots": "Innate spells use no slots."
+      },
+      "Preview": {
+        "Title": "Preview",
+        "Unnamed": "Unnamed creature",
+        "Creature": "Creature",
+        "Perception": "Perception",
+        "Skills": "Skills",
+        "ArmorClass": "AC",
+        "HitPoints": "HP",
+        "Resistances": "Resistances",
+        "Weaknesses": "Weaknesses",
+        "Melee": "Melee",
+        "Ranged": "Ranged",
+        "Damage": "Damage",
+        "Plus": "plus",
+        "Reach": "reach",
+        "RangeIncrement": "range increment",
+        "Spells": "Spells",
+        "DC": "DC",
+        "Attack": "attack",
+        "Attributes": {
+          "str": "Str",
+          "dex": "Dex",
+          "con": "Con",
+          "int": "Int",
+          "wis": "Wis",
+          "cha": "Cha"
+        },
+        "Saves": {
+          "fortitude": "Fort",
+          "reflex": "Ref",
+          "will": "Will"
+        },
+        "Except": "except",
+        "Languages": "Languages",
+        "Immunities": "Immunities",
+        "Speed": "Speed"
+      },
+      "Warnings": {
+        "NameRequired": "Enter a name for the creature.",
+        "IncompatibleSpell": "That spell does not fit this slot."
+      },
+      "Senses": {
+        "Title": "Senses",
+        "Add": "Add sense",
+        "Range": "Range (ft)"
+      },
+      "Speeds": {
+        "Title": "Speeds",
+        "burrow": "burrow",
+        "climb": "climb",
+        "fly": "fly",
+        "swim": "swim"
+      },
+      "Roadmaps": {
+        "magicalStriker": "Either a scattering of innate spells, or prepared or spontaneous spells with a rank up to one less than half the creature's level, rounded up.",
+        "skillParagon": "Many skills, potentially one or two of them extreme. At least one special ability uses the creature's skills in combat.",
+        "skirmisher": "Higher Speed than typical.",
+        "sniper": "Melee Strikes are weaker than ranged Strikes.",
+        "soldier": "Reactive Strike or other tactical abilities.",
+        "spellcaster": "Prepared or spontaneous spells with a rank of up to half the creature's level, rounded up.",
+        "alchemist": "High Crafting. Abilities: infused alchemical items, Quick Bomber if a bomber alchemist, a few other alchemist abilities.",
+        "barbarian": "High Athletics. Abilities: Rage, instinct ability and related feats, raging resistance.",
+        "bard": "Moderate Occultism, high Performance, high Charisma-based skills. Abilities: spontaneous occult spellcasting as a bard of their level, composition spells, muse feats.",
+        "champion": "Moderate Religion. Abilities: Blessing of the devoted and related feats, cause, champion's aura, devotion spells, exalted reaction, Shield Block, Smite.",
+        "clericCloistered": "High Religion, moderate or high skill themed to deity. Abilities: prepared divine spellcasting as a cleric of their level; divine font; domain spells.",
+        "clericWarpriest": "Moderate Religion, moderate or high skill themed to deity. Abilities: prepared divine spellcasting as a cleric of their level; divine font, Shield Block.",
+        "druid": "High Nature, moderate or high skill from order. Abilities: prepared primal spellcasting as a druid of their level; order ability, order feats, and order spell; Shield Block.",
+        "fighter": "High Acrobatics or Athletics. Abilities: Bravery, Reactive Strike, Shield Block, a few fighter abilities and feats associated with a combat style.",
+        "investigator": "High Society, high methodology skill, plus more skills than usual. Abilities: Pursue a Lead, Devise a Stratagem, methodology action.",
+        "monk": "High Acrobatics, Athletics, or both. Abilities: Flurry of Blows, metal strikes, mystic strikes, perfected form, stance and related feats, qi abilities.",
+        "oracle": "High Religion, high mystery skill, moderate or high skill themed to deity. Abilities: spontaneous divine spellcasting as an oracle of their level; oracle mystery and related spells, revelation spells, curse.",
+        "ranger": "Moderate Nature and moderate to high Survival. Abilities: Hunt Prey, hunter's edge, nature's edge, masterful hunter, swift prey, companion or combat style. Hunt Prey is optional for a simpler ranger.",
+        "rogue": "High Stealth and Thievery, plus more skills than usual. Abilities: sneak attack, surprise attack, deny advantage, debilitating strike, master strike, rogue's racket.",
+        "sorcerer": "Moderate bloodline skills and high Charisma-based bloodline skills. Abilities: spontaneous spellcasting of a tradition based on bloodline as a sorcerer of their level, bloodline and related feats and spells.",
+        "swashbuckler": "High Acrobatics, plus high style skill. Abilities: confident finisher, panache, precise strike, stylish combatant, swashbuckler's style.",
+        "witch": "High patron skill. Abilities: prepared spellcasting of a tradition based on patron as a witch of their level, familiar, witch's patron and related cantrip, hex, and spells.",
+        "wizard": "High Arcana. Abilities: prepared arcane spellcasting as a wizard of their level, Drain Bonded Item, school spell, and curriculum spells."
+      },
+      "TraitNotes": {
+        "angel": "Aura: each angel has a unique aura based on its role as a messenger. Rituals: usually angelic messenger (Monster Core).",
+        "animal": "Languages: none. Int -4 or -5.",
+        "archon": "Virtue Ability: archons each represent a specific virtue, like courage or hope, and have a special ability based on it.",
+        "azata": "Freedom Ability: azatas each represent a specific freedom, like free expression or free love, and have a special ability based on it.",
+        "beast": "Int -3 or higher.",
+        "celestial": "Saves: often a +1 status bonus to all saves vs. magic. Strikes: typically have the holy trait.",
+        "construct": "Many constructs lack minds and have the mindless trait. If mindless, add mental immunity.",
+        "daemon": "Languages: telepathy 100 feet. Death Ability: daemons each represent a specific kind of death and have a special ability based on it.",
+        "demon": "Languages: telepathy, usually reaching 100 feet. HP is typically high to account for multiple weaknesses. Sin Vulnerability and Sin Ability based on the sin represented. Divine Innate Spells: usually 5th-rank translocate and at-will 4th-rank translocate. Rituals: usually demonic pact (Monster Core).",
+        "devil": "Languages: telepathy, usually reaching 100 feet. Divine Innate Spells: usually one 5th-rank translocate and at-will 4th-rank translocate. Rituals: usually diabolic pact (Monster Core). Infernal Hierarchy Ability based on the role in the infernal hierarchy.",
+        "dragon": "Dragon Breath: many dragons have an activity that exhales damaging magical energy, and the dragon's theme sets the details.",
+        "fiend": "Saves: often a +1 status bonus to all saves vs. magic. Strikes: typically have the unholy trait.",
+        "fire": "Weaknesses: typically cold and water; only cold is applied because creatures typically have at most one weakness. Strikes: typically deal fire damage.",
+        "fungus": "Fungi without minds have the mindless trait. If mindless, add mental immunity. Weaknesses: sometimes slashing or fire.",
+        "giant": "Large or bigger.",
+        "humanoid": "Int -3 or higher.",
+        "incorporeal": "Resistances: all damage except force, ghost touch, vitality for undead, or spirit; double resistance vs. non-magical. Strikes: magical trait, typically low or moderate damage. HP is terrible at lower levels, then low at higher levels. AC is typically low or moderate.",
+        "ooze": "Almost all oozes lack minds and have the mindless trait. Add mental immunity. With no vision, add visual effects immunity. AC is usually terrible, and HP is usually around double.",
+        "plant": "Plants without minds have the mindless trait. If mindless, add mental immunity. Weaknesses: sometimes fire.",
+        "protean": "Resistances: protean anatomy (Monster Core). Divine Innate Spells: constant unfettered movement. Change Shape (Monster Core).",
+        "psychopomp": "Damage: shepherd's touch (Monster Core).",
+        "swarm": "Size is based on the entire mass, usually Large or bigger. Weaknesses: area damage and splash damage; only area damage is applied. Resistances: usually one physical type has lower or no resistance.",
+        "undead": "Almost all undead are unholy. Ghostly undead have the incorporeal trait. Undead without minds have the mindless trait, so add mental immunity. HP: void healing (Monster Core). Add unconscious immunity instead of sleep if it never rests.",
+        "wood": "Weaknesses: fire and axes or slashing; only fire is applied."
+      },
+      "Balance": {
+        "Title": "Balance check",
+        "Statistics": {
+          "perception": "Perception",
+          "armorClass": "AC",
+          "hitPoints": "HP",
+          "skill": "Skill",
+          "strikeAttack": "Strike attack",
+          "strikeDamage": "Strike damage",
+          "spellDifficultyClass": "Spell DC",
+          "spellAttack": "Spell attack"
+        },
+        "Fixes": {
+          "tier": "Set {statistic} to {tier}",
+          "value": "Set {statistic} to {value}",
+          "remove": "Remove {type}",
+          "size": "Set size to {size}",
+          "addTrait": "Add the {trait} trait",
+          "addWeakness": "Add a weakness to {type}",
+          "addImmunity": "Add immunity to {immunity}"
+        },
+        "Rules": {
+          "needsWeakness": "The creature has an extreme statistic, or four or more high ones, with nothing low. Add a low statistic to offset them.",
+          "tooManyExtremes": "The creature has {count} extreme statistics at level {level}. Creatures of this level typically have up to {allowed}.",
+          "noLowStatistic": "The creature has high statistics but nothing low. Lower at least one statistic.",
+          "noHighStatistic": "The creature has low statistics but nothing high. Raise at least one statistic.",
+          "extremeWithoutLow": "An extreme statistic at level {level} needs at least {count} low statistics to offset it.",
+          "allHighDefenses": "AC and every save are high. Lower at least one save.",
+          "manyHighDefenses": "{count} of the 4 defenses, AC and the saves, are high, with none low. Lower one of them.",
+          "earlyExtremeArmorClass": "Extreme AC at level {level} makes the creature very hard for the party to hit. Use high AC at low levels.",
+          "aboveScale": "{statistic} is above the extreme value for level {level}.",
+          "belowScale": "{statistic} is below the lowest value for level {level}.",
+          "oozeArmorClass": "Oozes have low AC, so their AC should not be higher than low.",
+          "swarmHitPoints": "Swarms have low HP, so their HP should not be higher than moderate.",
+          "missingTrait": "The {trait} trait usually comes with the {required} trait.",
+          "missingWeakness": "The {trait} trait usually comes with a weakness to {required}.",
+          "missingProtection": "The {trait} trait usually comes with immunity or resistance to {required}.",
+          "rangedStrikeDamage": "{name} is a ranged Strike with extreme damage. Ranged Strikes should deal high damage at most.",
+          "extremeArmorClassHitPoints": "Extreme AC together with high HP makes the creature too hard to bring down. Lower its HP or AC.",
+          "multipleExtremeSaves": "The creature has {count} extreme saves. Almost no creature should have more than one, even at high levels.",
+          "linkedExtremeStrike": "{name} has an extreme attack bonus or damage together with a high value in the other, so every attack is strong on both counts.",
+          "agileStrikeDamage": "{name} is agile, so its damage should typically be moderate.",
+          "earlyExtremeSpells": "Extreme spell numbers are standard from level 15. At level {level} they suit only creatures with very weak defenses.",
+          "perceptionWisdom": "The creature has high Perception with a low Wisdom modifier. Perception should follow Wisdom unless the creature has acute senses.",
+          "skillAttribute": "{skill} is high while {attribute} is low. A creature's best skills should go with its best attribute modifiers.",
+          "tooManyHighSkills": "The creature has {count} high skills. Most creatures have no more than three.",
+          "tooManyWeaknesses": "The creature has {count} weaknesses. Creatures typically have at most one.",
+          "weaknessHitPoints": "A weakness calls for extra HP, but this creature has low HP.",
+          "broadResistanceHitPoints": "A broad resistance usually comes with fewer HP, but this creature has high HP.",
+          "sizeForLevel": "{size} creatures are seldom found at level {level}.",
+          "extremeStrengthSize": "An extreme Strength modifier at level {level} is usually reserved for {size} or larger creatures.",
+          "flyingStrikers": "A flying creature with ranged Strikes is typically introduced around level 7, when PCs gain flight. This one is level {level}.",
+          "traitAttribute": "The {trait} trait expects a different {attribute} modifier."
+        }
+      }
+    },
+    "Feedback": {
+      "MenuLabel": "Send feedback",
+      "MenuHint": "Send feedback about Daavy's Homebrew Toolkit.",
+      "Category": "Category",
+      "Categories": {
+        "Bug": "Bug",
+        "Suggestion": "Suggestion"
+      },
+      "Message": "Message",
+      "MessageHint": "Describe the issue or suggestion. Do not include personal or private information.",
+      "Cancel": "Cancel",
+      "Send": "Send feedback",
+      "Invalid": "Choose a category and enter a message of up to 3,000 characters.",
+      "Success": "Feedback sent.",
+      "Error": "Could not send feedback. Try again later."
+    },
+    "Donate": {
+      "Label": "Donate"
+    },
+    "Discord": {
+      "Label": "Discord"
+    },
+    "InlineBuilder": {
+      "Keybindings": {
+        "OpenDialog": {
+          "Name": "Open Inline Builder",
+          "Hint": "Opens the Inline Builder window"
+        }
+      },
+      "Window": {
+        "InlineBuilder": "Inline Builder",
+        "SelectCondition": "Select Condition",
+        "AddDamage": "Add Damage",
+        "AddPersistentDamage": "Add Persistent Damage",
+        "DcSuggestion": "DC Suggestion",
+        "DamageSuggestion": "Damage Suggestion",
+        "TextEditor": "Text Editor"
+      },
+      "Labels": {
+        "SectionsAria": "Inline Builder sections",
+        "AreaTemplate": "Area Template",
+        "Damage": "Damage",
+        "SavingThrow": "Saving Throw",
+        "Automations": "Automations",
+        "TemplateType": "Template Type",
+        "Distance": "Distance",
+        "Formula": "Formula",
+        "FormulaOnly": "Formula only",
+        "DamageType": "Damage Type",
+        "DamageTypeLower": "Damage type",
+        "SelectPlaceholder": "Select a type",
+        "Traits": "Traits",
+        "Save": "Save",
+        "SaveAction": "Save",
+        "Dc": "DC",
+        "Basic": "Basic",
+        "ShowAs": "Show As",
+        "Apply": "Apply",
+        "Add": "Add",
+        "Type": "Type",
+        "Level": "Level",
+        "CreatureLevel": "Creature level",
+        "Intensity": "Intensity",
+        "DcCategory": "DC category",
+        "DamageProfile": "Damage profile",
+        "Area": "Area",
+        "Strike": "Strike",
+        "DamageCategory": "Damage category",
+        "Unlimited": "Unlimited",
+        "Limited": "Limited",
+        "Extreme": "Extreme",
+        "High": "High",
+        "Moderate": "Moderate",
+        "Low": "Low"
+      },
+      "Tooltips": {
+        "DecreaseDistance": "Decrease (-5, Shift: -10)",
+        "IncreaseDistance": "Increase (+5, Shift: +10)",
+        "ResetDistance": "Reset (0)",
+        "SuggestBasedOnLevel": "Suggest based on level",
+        "BasicSave": "Basic save",
+        "AddCondition": "Add Condition",
+        "TextEditor": "Text Editor",
+        "ClickAddCondition": "Click to add condition",
+        "ClickAddPersistentDamage": "Click to add persistent damage",
+        "ClickAddDamage": "Click to add damage"
+      },
+      "TemplateTypes": {
+        "Burst": "Burst",
+        "Cone": "Cone",
+        "Square": "Square",
+        "Line": "Line"
+      },
+      "SaveTypes": {
+        "Fortitude": "Fortitude",
+        "Reflex": "Reflex",
+        "Will": "Will"
+      },
+      "ShowDCOptions": {
+        "All": "All",
+        "Owner": "Owner",
+        "Gm": "GM",
+        "None": "None"
+      },
+      "Traits": {
+        "AreaDamage": "Area Damage",
+        "Splash": "Splash",
+        "Persistent": "Persistent"
+      },
+      "Automation": {
+        "CriticalSuccess": "Critical Success:",
+        "Success": "Success:",
+        "Failure": "Failure:",
+        "CriticalFailure": "Critical Failure:"
+      },
+      "Description": {
+        "Template": "Template:",
+        "SavingThrow": "Saving Throw:",
+        "Damage": "Damage:"
+      },
+      "Warnings": {
+        "AreaTypeRequired": "Select an area type.",
+        "AreaDistanceRequired": "Area distance must be greater than 0.",
+        "SaveTypeRequired": "Select a save type.",
+        "DcRequired": "Save DC must be greater than 0.",
+        "DamageFormulaRequired": "Enter a damage formula.",
+        "DamageTypeRequired": "Select a damage type.",
+        "SectionRequired": "Select at least one section and fill in its fields.",
+        "NoNpcSheet": "No open NPC sheet found.",
+        "DcNotFound": "DC not found for this level.",
+        "DamageTypeIntensityRequired": "Select a damage type and intensity.",
+        "DamageTableNotFound": "Damage table not found.",
+        "FormulaNotFound": "Formula not found for this level.",
+        "AutomationFailed": "Unable to apply outcome effects. See the console for details."
+      },
+      "Notifications": {
+        "Applied": "Applied to description.",
+        "CopiedNoEditor": "Copied to clipboard. No active editor.",
+        "CopyFailed": "Failed to copy."
+      }
+    }
+  }
+}
